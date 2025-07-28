@@ -78,15 +78,15 @@ const Contact = () => {
     {
       icon: <Mail className="w-6 h-6" />,
       label: "Email",
-      value: "hello@yourname.dev",
-      link: "mailto:hello@yourname.dev",
+      value: "akshatchopra009@gmail.com",
+      // link: "mailto:akshatchopra009@gmail.com",
       color: "text-blue-400"
     },
     {
       icon: <Phone className="w-6 h-6" />,
       label: "Phone",
-      value: "+1 (555) 123-4567",
-      link: "tel:+15551234567",
+      value: "+91 7888612152",
+      // link: "tel:+15551234567",
       color: "text-green-400"
     },
     {
@@ -102,13 +102,13 @@ const Contact = () => {
     {
       icon: <Github className="w-6 h-6" />,
       label: "GitHub",
-      link: "https://github.com",
+      link: "https://github.com/Akshat7-maker",
       color: "hover:text-gray-300"
     },
     {
       icon: <Linkedin className="w-6 h-6" />,
       label: "LinkedIn",
-      link: "https://linkedin.com",
+      link: "https://www.linkedin.com/in/akshat-chopra-chopra-aa0706295",
       color: "hover:text-blue-400"
     },
     {
@@ -414,7 +414,7 @@ const Contact = () => {
         </div>
 
         {/* Additional CTA */}
-        <motion.div
+        {/* <motion.div
           initial={{ y: 30, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.6 }}
@@ -435,7 +435,7 @@ const Contact = () => {
             <Phone className="w-5 h-5" />
             Schedule a Call
           </motion.a>
-        </motion.div>
+        </motion.div> */}
       </div>
     </section>
   );

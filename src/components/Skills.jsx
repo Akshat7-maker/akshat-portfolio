@@ -45,6 +45,7 @@ function CoverflowCarousel({ skills, colorClass }) {
 
   return (
     <div
+    id="skills"
       ref={containerRef}
       className="relative flex items-center justify-center w-full h-48 select-none mb-12"
       onMouseMove={handleMouseMove}

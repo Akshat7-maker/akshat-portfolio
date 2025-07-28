@@ -50,8 +50,8 @@ const About = () => {
 
   const tabs = [
     { id: "story", label: "My Story", icon: <Lightbulb className="w-5 h-5" /> },
-    { id: "journey", label: "Journey", icon: <Code className="w-5 h-5" /> },
-    { id: "personal", label: "Personal", icon: <Heart className="w-5 h-5" /> }
+    // { id: "journey", label: "Journey", icon: <Code className="w-5 h-5" /> },
+    // { id: "personal", label: "Personal", icon: <Heart className="w-5 h-5" /> }
   ];
 
   const funFacts = [
@@ -142,7 +142,7 @@ const About = () => {
               that solve real-world problems.
             </p>
             <p className="text-lg text-gray-300 leading-relaxed">
-              I specialize in modern web technologies like React, Node.js, and cloud platforms. But beyond the tech stack, 
+              I specialize in modern web technologies like React, Next.js, and Node.js. But beyond the tech stack, 
               I'm driven by the challenge of turning ideas into reality and creating digital experiences that users love.
             </p>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8">

@@ -66,88 +66,65 @@ import { ExternalLink, Github, Code, Smartphone, Globe, Database, Zap, Eye } fro
 const projects = [
   {
     id: 1,
+    title: "ProjectRack",
+    description: "Full-stack project management tool to plan, track, and collaborate on tasks efficiently.",
+    longDescription: "ProjectRack is a robust project management application built with Next.js and powered by Prisma and PostgreSQL. It offers task tracking, user authentication, team collaboration, and activity logs—all with a clean and responsive UI.",
+    image: "https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=600&h=400&fit=crop",
+    technologies: ["Next.js", "Prisma", "PostgreSQL", "Tailwind CSS", "Clerk Auth"],
+    category: "Full Stack",
+    status: "Completed",
+    link: "https://projectrack.akshatchopra.live",
+    github: "https://github.com/Akshat7-maker/scrum",
+    features: [
+      "User Authentication with Clerk",
+      "Create & Assign Tasks",
+      "Team Collaboration",
+      "Activity Timeline",
+      "Responsive Dashboard"
+    ],
+    timeline: "1.5 months"
+  },
+
+  {
+    id: 2,
     title: "E-Commerce Platform",
     description: "Full-stack e-commerce solution with advanced features like real-time inventory, payment processing, and admin dashboard.",
-    longDescription: "A comprehensive e-commerce platform built with modern technologies. Features include user authentication, shopping cart, payment integration with Stripe, order management, and an admin panel for product management.",
+    longDescription: "A comprehensive e-commerce platform built with modern technologies. Features include user authentication, shopping cart, payment integration with Razorpay, order management, and an admin panel for product management.",
     image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&h=400&fit=crop",
     technologies: ["React", "Node.js", "MongoDB", "Express", "Stripe", "JWT"],
     category: "Full Stack",
     status: "Completed",
-    link: "#",
-    github: "#",
+    link: "https://ecommerce-k2yn.onrender.com",
+    github: "https://github.com/Akshat7-maker/Ecommerce",
     features: ["User Authentication", "Payment Processing", "Real-time Updates", "Admin Dashboard"],
     timeline: "3 months"
   },
+
   {
-    id: 2,
-    title: "Task Management App",
-    description: "Collaborative task management application with real-time updates, team collaboration, and progress tracking.",
-    longDescription: "A modern task management solution that helps teams stay organized and productive. Built with React and Socket.io for real-time collaboration.",
-    image: "https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=600&h=400&fit=crop",
-    technologies: ["React", "TypeScript", "Socket.io", "PostgreSQL", "Tailwind"],
-    category: "Frontend",
-    status: "In Progress",
-    link: "#",
-    github: "#",
-    features: ["Real-time Collaboration", "Drag & Drop", "Team Management", "Progress Analytics"],
-    timeline: "2 months"
-  },
-  {
-    id: 3,
-    title: "Weather Dashboard",
-    description: "Beautiful weather application with location-based forecasts, interactive maps, and detailed analytics.",
-    longDescription: "A comprehensive weather dashboard that provides detailed weather information with beautiful visualizations and an intuitive user interface.",
-    image: "https://images.unsplash.com/photo-1504608524841-42fe6f032b4b?w=600&h=400&fit=crop",
-    technologies: ["React", "Chart.js", "OpenWeather API", "Geolocation"],
-    category: "Frontend",
-    status: "Completed",
-    link: "#",
-    github: "#",
-    features: ["Location Detection", "Interactive Charts", "7-day Forecast", "Weather Maps"],
-    timeline: "1 month"
-  },
-  {
-    id: 4,
-    title: "Social Media API",
-    description: "RESTful API for a social media platform with authentication, posts, comments, and real-time notifications.",
-    longDescription: "A robust backend API built with Node.js and Express, featuring comprehensive user management, post interactions, and real-time features.",
-    image: "https://images.unsplash.com/photo-1611605698335-8b1569810432?w=600&h=400&fit=crop",
-    technologies: ["Node.js", "Express", "MongoDB", "JWT", "Socket.io"],
-    category: "Backend",
-    status: "Completed",
-    link: "#",
-    github: "#",
-    features: ["RESTful API", "User Authentication", "Real-time Notifications", "File Upload"],
-    timeline: "2 months"
-  },
-  {
-    id: 5,
-    title: "Portfolio Website",
-    description: "Modern, responsive portfolio website with animations, dark mode, and contact form integration.",
-    longDescription: "A sleek portfolio website showcasing my work and skills, built with React and featuring smooth animations and modern design principles.",
-    image: "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=600&h=400&fit=crop",
-    technologies: ["React", "Framer Motion", "Tailwind CSS", "EmailJS"],
-    category: "Frontend",
-    status: "Completed",
-    link: "#",
-    github: "#",
-    features: ["Responsive Design", "Smooth Animations", "Contact Form", "SEO Optimized"],
-    timeline: "1 month"
-  },
-  {
-    id: 6,
-    title: "Data Visualization Tool",
-    description: "Interactive data visualization dashboard with charts, filters, and real-time data processing capabilities.",
-    longDescription: "A powerful data visualization tool that transforms complex datasets into beautiful, interactive charts and graphs for better decision making.",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop",
-    technologies: ["React", "D3.js", "Python", "Flask", "PostgreSQL"],
-    category: "Full Stack",
-    status: "In Progress",
-    link: "#",
-    github: "#",
-    features: ["Interactive Charts", "Real-time Data", "Custom Filters", "Export Options"],
-    timeline: "4 months"
-  }
+  id: 3,
+  title: "Chatter Box",
+  description: "Real-time chat application with instant messaging, user authentication, and online status.",
+  longDescription: "PulseChat is a full-stack real-time messaging application built with Next.js and Socket.io. It features secure user authentication, live chat updates, typing indicators, and user online status tracking, offering a smooth and responsive communication experience.",
+  image: "https://images.unsplash.com/photo-1535223289827-42f1e9919769?w=600&h=400&fit=crop",
+  technologies: ["React", "Socket.io", "Node.js", "MongoDB", "Tailwind CSS", "JWT Auth"],
+  category: "Full Stack",
+  status: "Completed",
+  link: "https://chatappmern-kj1f.onrender.com",
+  github: "https://github.com/Akshat7-maker/chatappMERN",
+  features: [
+    "Real-time Messaging",
+    "Private Chats",
+    "Typing Indicator",
+    "JWT Authentication",
+    "User Online Status",
+    "Responsive UI"
+  ],
+  timeline: "1.5 month"
+}
+
+
+
+
 ];
 
 const categories = ["All", "Full Stack", "Frontend", "Backend"];
@@ -161,8 +138,8 @@ const Projects = () => {
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [selectedProject, setSelectedProject] = useState(null);
 
-  const filteredProjects = selectedCategory === "All" 
-    ? projects 
+  const filteredProjects = selectedCategory === "All"
+    ? projects
     : projects.filter(project => project.category === selectedCategory);
 
   const getStatusColor = (status) => {
@@ -208,7 +185,7 @@ const Projects = () => {
         </motion.div>
 
         {/* Category Filter */}
-        <motion.div
+        {/* <motion.div
           initial={{ y: 20, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.2 }}
@@ -220,18 +197,17 @@ const Projects = () => {
               <button
                 key={category}
                 onClick={() => setSelectedCategory(category)}
-                className={`px-6 py-3 rounded-full transition-all duration-300 flex items-center gap-2 ${
-                  selectedCategory === category
+                className={`px-6 py-3 rounded-full transition-all duration-300 flex items-center gap-2 ${selectedCategory === category
                     ? "bg-gradient-to-r from-purple-600 to-pink-600 text-white shadow-lg"
                     : "text-gray-400 hover:text-white"
-                }`}
+                  }`}
               >
                 {category !== "All" && getCategoryIcon(category)}
                 <span className="font-medium">{category}</span>
               </button>
             ))}
           </div>
-        </motion.div>
+        </motion.div> */}
 
         {/* Projects Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -256,7 +232,7 @@ const Projects = () => {
                       className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent" />
-                    
+
                     {/* Status Badge */}
                     <div className={`absolute top-4 right-4 px-3 py-1 rounded-full text-xs font-medium ${getStatusColor(project.status)}`}>
                       {project.status}
@@ -302,7 +278,7 @@ const Projects = () => {
                           whileHover={{ scale: 1.1 }}
                           whileTap={{ scale: 0.9 }}
                           className="p-2 bg-purple-600/20 text-purple-400 rounded-lg hover:bg-purple-600/30 transition-colors"
-                          onClick={(e) => {e.stopPropagation(); window.open(project.link, '_blank');}}
+                          onClick={(e) => { e.stopPropagation(); window.open(project.link, '_blank'); }}
                         >
                           <ExternalLink className="w-4 h-4" />
                         </motion.button>
@@ -310,7 +286,7 @@ const Projects = () => {
                           whileHover={{ scale: 1.1 }}
                           whileTap={{ scale: 0.9 }}
                           className="p-2 bg-gray-600/20 text-gray-400 rounded-lg hover:bg-gray-600/30 transition-colors"
-                          onClick={(e) => {e.stopPropagation(); window.open(project.github, '_blank');}}
+                          onClick={(e) => { e.stopPropagation(); window.open(project.github, '_blank'); }}
                         >
                           <Github className="w-4 h-4" />
                         </motion.button>
