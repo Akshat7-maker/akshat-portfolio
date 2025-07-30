@@ -53,7 +53,7 @@ const Hero = () => {
   
   const roles = [
     "Full Stack Developer",
-    "Frontend Developer", 
+    // "Frontend Developer", 
     // "UI/UX Enthusiast",
     "Problem Solver",
     "Code Craftsman"
@@ -101,8 +101,10 @@ const Hero = () => {
     { Icon: Coffee, delay: 2.5, x: "90%", y: "55%" }
   ];
 
+  // bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900
+
   return (
-    <section id="hero" className="flex flex-col items-center justify-center min-h-[95vh] pt-20 pb-12 text-center relative overflow-hidden w-full bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
+    <section id="hero" className="flex flex-col items-center justify-center min-h-[100vh] pt-20 pb-12 text-center relative  w-screen ">
       
       {/* Dynamic background elements */}
       <div className="absolute inset-0 overflow-hidden">

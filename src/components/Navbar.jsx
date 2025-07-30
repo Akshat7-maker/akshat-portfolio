@@ -1,47 +1,10 @@
-// import React from "react";
-// import { motion } from "framer-motion";
-
-// const navLinks = [
-//   { name: "Home", href: "#" },
-//   { name: "About", href: "#about" },
-//   { name: "Projects", href: "#projects" },
-//   { name: "Contact", href: "#contact" },
-// ];
-
-// const Navbar = () => (
-//   <motion.nav
-//     initial={{ y: -60, opacity: 0 }}
-//     animate={{ y: 0, opacity: 1 }}
-//     transition={{ duration: 0.7, ease: "easeOut" }}
-//     className="w-full py-6 px-4 flex justify-between items-center fixed top-0 left-0 z-50 bg-gradient-to-r from-black/80 via-purple-900/80 to-black/80 backdrop-blur-md shadow-lg"
-//   >
-//     <a href="#" className="text-2xl font-extrabold tracking-tight bg-gradient-to-r from-purple-400 to-pink-600 bg-clip-text text-transparent">
-//       MyPortfolio
-//     </a>
-//     <ul className="flex gap-8 text-lg font-medium">
-//       {navLinks.map((link) => (
-//         <li key={link.name}>
-//           <a
-//             href={link.href}
-//             className="hover:text-pink-400 transition-colors duration-200"
-//           >
-//             {link.name}
-//           </a>
-//         </li>
-//       ))}
-//     </ul>
-//   </motion.nav>
-// );
-
-// export default Navbar; 
-
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const navLinks = [
   { name: "Home", href: "#", icon: "🏠" },
-  { name: "About", href: "#about", icon: "👨‍💻" },
   { name: "Skills", href: "#skills", icon: "🎨" },
+  { name: "About", href: "#about", icon: "👨‍💻" },
   { name: "Projects", href: "#projects", icon: "🚀" },
   { name: "Contact", href: "#contact", icon: "📧" },
 ];
@@ -52,12 +15,87 @@ const Navbar = () => {
   const [showMobileMenu, setShowMobileMenu] = useState(false);
 
   useEffect(() => {
+    console.log("navbar mounted");
+    
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
+      
+      // Auto-detect active section based on scroll position
+      const sections = navLinks.map(link => {
+        const element = link.href === "#" 
+          ? document.body 
+          : document.querySelector(link.href);
+        return { name: link.name, element, href: link.href };
+      }).filter(section => section.element);
+
+      let currentSection = "Home"; // Default to Home
+      
+      // Check if we're at the top of the page
+      if (window.scrollY < 100) {
+        currentSection = "Home";
+      } else {
+        // Find the section that's currently in view
+        for (let i = sections.length - 1; i >= 0; i--) {
+          const section = sections[i];
+          if (section.href !== "#" && section.element) {
+            const rect = section.element.getBoundingClientRect();
+            const elementTop = rect.top + window.scrollY;
+            
+            // Section is considered active if:
+            // 1. We've scrolled past its top
+            // 2. And we haven't scrolled past its bottom (with some offset)
+            if (window.scrollY >= elementTop - 100) {
+              currentSection = section.name;
+              break;
+            }
+          }
+        }
+      }
+      
+      // Only update if the section has actually changed
+      if (currentSection !== activeLink) {
+        setActiveLink(currentSection);
+      }
     };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+
+    // Throttle scroll events for better performance
+    let ticking = false;
+    const throttledHandleScroll = () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          handleScroll();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    window.addEventListener("scroll", throttledHandleScroll, { passive: true });
+    
+    // Initial check
+    handleScroll();
+    
+    return () => window.removeEventListener("scroll", throttledHandleScroll);
+  }, [activeLink]); // Include activeLink in dependencies
+
+  // Smooth scroll function for manual navigation
+  const handleLinkClick = (link) => {
+    setActiveLink(link.name);
+    
+    if (link.href === "#") {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    } else {
+      const element = document.querySelector(link.href);
+      if (element) {
+        const navHeight = 80; // Account for fixed navbar height
+        const elementTop = element.offsetTop - navHeight;
+        window.scrollTo({ top: elementTop, behavior: "smooth" });
+      }
+    }
+    
+    // Close mobile menu if open
+    setShowMobileMenu(false);
+  };
 
   const logoVariants = {
     initial: { scale: 1 },
@@ -105,10 +143,10 @@ const Navbar = () => {
         initial={{ y: -80, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
-        className={`w-full py-4 px-6 flex justify-between items-center fixed top-0 left-0 z-50 transition-all duration-300 ${
+        className={`w-screen py-4 px-6 flex justify-between items-center fixed top-0 left-0 z-50 transition-all duration-300 ${
           isScrolled 
-            ? "bg-slate-900/95 backdrop-blur-xl shadow-2xl border-b border-cyan-400/20" 
-            : "bg-gradient-to-r from-slate-900/80 via-slate-800/80 to-slate-900/80 backdrop-blur-md"
+            ? "bg-gradient-to-r from-black/80 via-purple-900/80 to-black/80 backdrop-blur-md shadow-lg" 
+            : "bg-transparent"
         }`}
       >
         {/* Enhanced Logo with Akshat branding */}
@@ -151,6 +189,10 @@ const Navbar = () => {
           {/* Akshat's Logo */}
           <a 
             href="#" 
+            onClick={(e) => {
+              e.preventDefault();
+              handleLinkClick({ name: "Home", href: "#" });
+            }}
             className="relative group/logo"
           >
             {/* Main text */}
@@ -247,7 +289,10 @@ const Navbar = () => {
               >
                 <a
                   href={link.href}
-                  onClick={() => setActiveLink(link.name)}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleLinkClick(link);
+                  }}
                   className={`flex items-center gap-2 px-3 py-2 rounded-lg transition-all duration-300 relative overflow-hidden group ${
                     activeLink === link.name 
                       ? "text-cyan-400 bg-cyan-500/10 shadow-lg shadow-cyan-500/20" 
@@ -349,9 +394,9 @@ const Navbar = () => {
                 >
                   <a
                     href={link.href}
-                    onClick={() => {
-                      setActiveLink(link.name);
-                      setShowMobileMenu(false);
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handleLinkClick(link);
                     }}
                     className={`flex items-center gap-3 p-3 rounded-xl transition-all duration-300 ${
                       activeLink === link.name

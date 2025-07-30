@@ -1,5 +1,4 @@
-import React, { useRef, useState } from "react";
-import { motion, useMotionValue, useTransform } from "framer-motion";
+import React from "react";
 
 const frontendSkills = [
   { name: "React.js", icon: <svg className="w-8 h-8 text-cyan-400" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="2.5" fill="currentColor"/><g stroke="currentColor" strokeWidth="1.5"><ellipse rx="10" ry="4.5" cx="12" cy="12"/><ellipse rx="10" ry="4.5" cx="12" cy="12" transform="rotate(60 12 12)"/><ellipse rx="10" ry="4.5" cx="12" cy="12" transform="rotate(120 12 12)"/></g></svg> },
@@ -8,6 +7,7 @@ const frontendSkills = [
   { name: "HTML5", icon: <svg className="w-8 h-8 text-orange-500" fill="currentColor" viewBox="0 0 24 24"><path d="M3.5 2l1.7 19.1L12 22l6.8-1.9L20.5 2zm13.1 5.7l-.2 2.1-.1 1.2H8.7l.1 1.5h7.1l-.2 2.1-4.7 1.3v.1h-.1l-4.7-1.3-.3-3.6h1.7l.2 2.1 3.1.9 3.1-.9.2-2.1H8.7l-.1-1.2h7.1l.2-2.1z"/></svg> },
   { name: "CSS3", icon: <svg className="w-8 h-8 text-blue-500" fill="currentColor" viewBox="0 0 24 24"><path d="M3.5 2l1.7 19.1L12 22l6.8-1.9L20.5 2zm13.1 5.7l-.2 2.1-.1 1.2H8.7l.1 1.5h7.1l-.2 2.1-4.7 1.3v.1h-.1l-4.7-1.3-.3-3.6h1.7l.2 2.1 3.1.9 3.1-.9.2-2.1H8.7l-.1-1.2h7.1l.2-2.1z"/></svg> }
 ];
+
 const backendSkills = [
   { name: "Node.js", icon: <svg className="w-8 h-8 text-green-500" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12c0 5.52 4.48 10 10 10s10-4.48 10-10c0-5.52-4.48-10-10-10zm1.93 17.36c-.13.03-.18-.06-.18-.13v-1.3c0-.44-.15-.73-.32-.88 1.08-.12 2.22-.27 2.22-2.06 0-.51-.18-.93-.48-1.26.05-.12.21-.6-.05-1.25 0 0-.4-.13-1.3.48-.38-.11-.79-.17-1.2-.17-.41 0-.82.06-1.2.17-.9-.61-1.3-.48-1.3-.48-.26.65-.1 1.13-.05 1.25-.3.33-.48.75-.48 1.26 0 1.78 1.13 1.94 2.22 2.06-.13.11-.25.31-.29.6-.26.12-.92.32-1.33-.38-.09-.15-.26-.21-.41-.16-.15.06-.21.23-.13.38.13.22.32.41.57.56.23.13.5.2.77.2.16 0 .32-.02.47-.06.13.03.27.05.41.05.14 0 .28-.02.41-.05.15.04.31.06.47.06.27 0 .54-.07.77-.2.25-.15.44-.34.57-.56.08-.15.02-.32-.13-.38-.15-.05-.32.01-.41.16-.41.7-1.07.5-1.33.38-.04-.29-.16-.49-.29-.6z"/></svg> },
   { name: "Express.js", icon: <svg className="w-8 h-8 text-gray-300" fill="none" viewBox="0 0 24 24"><ellipse cx="12" cy="12" rx="10" ry="6" stroke="currentColor" strokeWidth="2"/><path d="M2 12c0 3.314 4.477 6 10 6s10-2.686 10-6" stroke="currentColor" strokeWidth="2"/><path d="M2 12V8c0-3.314 4.477-6 10-6s10 2.686 10 6v4" stroke="currentColor" strokeWidth="2"/></svg> },
@@ -15,122 +15,116 @@ const backendSkills = [
   { name: "REST APIs", icon: <svg className="w-8 h-8 text-blue-400" fill="currentColor" viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M7 12h10" stroke="#fff" strokeWidth="2"/></svg> }
 ];
 
-function CoverflowCarousel({ skills, colorClass }) {
-  const [active, setActive] = useState(2); // center card
-  const containerRef = useRef(null);
-  const mouseX = useMotionValue(0);
-  const [isHover, setIsHover] = useState(false);
-
-  // Parallax effect
-  const handleMouseMove = (e) => {
-    if (!containerRef.current) return;
-    const rect = containerRef.current.getBoundingClientRect();
-    mouseX.set(e.clientX - rect.left);
-  };
-
-  // Animate active card on hover
-  const scale = useTransform(mouseX, [0, 400], [1, 1.05]);
-
-  // Carousel navigation
-  const next = () => setActive((prev) => (prev + 1) % skills.length);
-  const prev = () => setActive((prev) => (prev - 1 + skills.length) % skills.length);
-
-  // Auto-rotate
-  React.useEffect(() => {
-    if (!isHover) {
-      const interval = setInterval(next, 2000);
-      return () => clearInterval(interval);
-    }
-  }, [isHover]);
-
+// Simple skill card component matching hero colors
+const SkillCard = ({ skill, delay = 0, cardType = 'frontend' }) => {
+  const isBackend = cardType === 'backend';
+  
   return (
-    <div
-    id="skills"
-      ref={containerRef}
-      className="relative flex items-center justify-center w-full h-48 select-none mb-12"
-      onMouseMove={handleMouseMove}
-      onMouseEnter={() => setIsHover(true)}
-      onMouseLeave={() => setIsHover(false)}
+    <div 
+      className={`group relative overflow-hidden rounded-2xl bg-slate-800/50 backdrop-blur-md border border-purple-500/30 p-6 transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-purple-500/40 hover:border-purple-400/50`}
+      style={{
+        animationDelay: `${delay}ms`,
+        animation: 'slideUp 0.6s ease-out forwards'
+      }}
     >
-      <button
-        onClick={prev}
-        className="absolute left-0 z-10 bg-black/40 hover:bg-black/70 text-white rounded-full p-2 shadow-lg backdrop-blur-md"
-        aria-label="Previous"
-      >
-        &#8592;
-      </button>
-      <div className="flex items-center justify-center w-full h-full gap-0">
-        {skills.map((skill, idx) => {
-          // Calculate position
-          const offset = idx - active;
-          const isActive = idx === active;
-          const z = 10 - Math.abs(offset);
-          const scaleVal = isActive ? 1.1 : 0.85;
-          const rotateY = offset * 30;
-          const blur = Math.abs(offset) > 1 ? "blur-sm" : "";
-          const opacity = Math.abs(offset) > 2 ? 0 : 1;
-          return (
-            <motion.div
-              key={skill.name}
-              style={{
-                zIndex: z,
-                scale: scaleVal,
-                rotateY,
-                opacity,
-                boxShadow: isActive
-                  ? "0 8px 32px 0 rgba(236,72,153,0.25), 0 1.5px 8px 0 rgba(139,92,246,0.15)"
-                  : undefined,
-              }}
-              className={`relative mx-[-32px] transition-all duration-500 ${blur} ${isActive ? "" : "grayscale"}`}
-              animate={{
-                scale: isActive ? 1.1 : 0.85,
-                opacity,
-                rotateY,
-              }}
-              transition={{ type: "spring", stiffness: 200, damping: 30 }}
-            >
-              <div
-                className={`flex flex-col items-center justify-center w-48 h-40 rounded-2xl ${colorClass} bg-opacity-80 shadow-2xl border border-white/10 backdrop-blur-lg p-4 glassmorphism`}
-                style={{
-                  background:
-                    "linear-gradient(135deg, rgba(236,72,153,0.15) 0%, rgba(139,92,246,0.12) 100%)",
-                  boxShadow: isActive
-                    ? "0 8px 32px 0 rgba(236,72,153,0.25), 0 1.5px 8px 0 rgba(139,92,246,0.15)"
-                    : undefined,
-                }}
-              >
-                {skill.icon}
-                <span className="mt-4 text-lg font-bold text-white drop-shadow-lg text-center">
-                  {skill.name}
-                </span>
-              </div>
-            </motion.div>
-          );
-        })}
+      {/* Animated background gradient matching hero */}
+      <div className={`absolute inset-0 bg-gradient-to-br ${isBackend ? 'from-purple-600/10 to-blue-600/10' : 'from-purple-600/10 to-pink-600/10'} opacity-0 group-hover:opacity-100 transition-opacity duration-300`}></div>
+      
+      {/* Content */}
+      <div className="relative z-10 flex flex-col items-center text-center">
+        <div className="mb-4 p-3 rounded-full bg-slate-700/30 group-hover:bg-slate-600/40 transition-all duration-300 group-hover:scale-110">
+          {skill.icon}
+        </div>
+        <h3 className={`text-white font-bold text-lg ${isBackend ? 'group-hover:text-cyan-300' : 'group-hover:text-purple-300'} transition-colors duration-300 drop-shadow-lg`}>
+          {skill.name}
+        </h3>
       </div>
-      <button
-        onClick={next}
-        className="absolute right-0 z-10 bg-black/40 hover:bg-black/70 text-white rounded-full p-2 shadow-lg backdrop-blur-md"
-        aria-label="Next"
-      >
-        &#8594;
-      </button>
+
+      {/* Subtle shine effect */}
+      <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent transform -skew-x-12 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"></div>
+      </div>
     </div>
   );
-}
+};
 
-const Skills = () => (
-  <section id="skills" className="py-24">
-    <h2 className="text-3xl md:text-4xl font-bold mb-10 text-center bg-gradient-to-r from-purple-400 to-pink-500 bg-clip-text text-transparent">
-      Skills
-    </h2>
-    <div className="max-w-6xl mx-auto ">
-      <h3 className="text-xl font-bold mb-2 text-pink-400">Frontend</h3>
-      <CoverflowCarousel skills={frontendSkills} colorClass="bg-pink-500/80" />
-      <h3 className="text-xl font-bold mb-2 text-purple-400 mt-8">Backend</h3>
-      <CoverflowCarousel skills={backendSkills} colorClass="bg-purple-500/80" />
+// Skills grid section
+const SkillsGrid = ({ skills, title, colorClass, cardType }) => {
+  return (
+    <div className="mb-16">
+      <h3 className={`text-2xl font-bold mb-8 ${colorClass} flex items-center`}>
+        <span className={`w-12 h-0.5 mr-4 ${cardType === 'backend' ? 'bg-gradient-to-r from-purple-400 to-cyan-400' : 'bg-gradient-to-r from-purple-400 to-pink-500'}`}></span>
+        {title}
+      </h3>
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+        {skills.map((skill, index) => (
+          <SkillCard 
+            key={skill.name} 
+            skill={skill} 
+            delay={index * 100}
+            cardType={cardType}
+          />
+        ))}
+      </div>
     </div>
-  </section>
-);
+  );
+};
 
-export default Skills; 
+const Skills = () => {
+  return (
+    <>
+      <style jsx>{`
+        @keyframes slideUp {
+          from {
+            opacity: 0;
+            transform: translateY(30px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+      `}</style>
+      
+      <section id="skills" className="py-24 relative -mt-1 w-screen">
+        {/* Seamless continuation of hero background */}
+        <div className="absolute inset-0">
+          {/* Animated grid continuing from hero */}
+          <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.05)_1px,transparent_1px)] bg-[size:50px_50px] animate-pulse opacity-30" />
+          
+          {/* Gradient orbs positioned to flow from hero */}
+          <div className="absolute -top-20 left-1/4 w-96 h-96 bg-gradient-to-r from-purple-500/30 to-pink-500/30 rounded-full filter blur-3xl animate-pulse"></div>
+          <div className="absolute top-1/3 right-1/4 w-80 h-80 bg-gradient-to-r from-blue-500/30 to-cyan-500/30 rounded-full filter blur-3xl"></div>
+          <div className="absolute bottom-10 left-1/3 w-72 h-72 bg-gradient-to-r from-violet-500/20 to-purple-500/20 rounded-full filter blur-3xl"></div>
+        </div>
+        
+        <div className="relative z-10 max-w-7xl mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-purple-400 via-pink-500 to-blue-400 bg-clip-text text-transparent pb-4">
+              Skills & Technologies
+            </h2>
+            <p className="text-lg max-w-2xl mx-auto text-gray-300 leading-relaxed">
+              Here are the technologies and tools I work with to bring ideas to life
+            </p>
+          </div>
+          
+          <SkillsGrid 
+            skills={frontendSkills} 
+            title="Frontend" 
+            colorClass="text-purple-400" 
+            cardType="frontend"
+          />
+          
+          <SkillsGrid 
+            skills={backendSkills} 
+            title="Backend" 
+            colorClass="text-cyan-400" 
+            cardType="backend"
+          />
+        </div>
+      </section>
+    </>
+  );
+};
+
+export default Skills;

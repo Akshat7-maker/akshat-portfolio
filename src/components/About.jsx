@@ -1,43 +1,4 @@
-// import React from "react";
-// import { motion } from "framer-motion";
 
-// const About = () => (
-//   <section id="about" className="py-24 flex flex-col items-center text-center">
-//     <motion.div
-//       initial={{ scale: 0.8, opacity: 0 }}
-//       whileInView={{ scale: 1, opacity: 1 }}
-//       transition={{ duration: 0.8, ease: "easeOut" }}
-//       viewport={{ once: true }}
-//       className="mb-8"
-//     >
-//       <img
-//         src="https://avatars.githubusercontent.com/u/9919?v=4"
-//         alt="Profile"
-//         className="w-32 h-32 rounded-full border-4 border-pink-500 shadow-lg mx-auto"
-//       />
-//     </motion.div>
-//     <motion.h2
-//       initial={{ y: 40, opacity: 0 }}
-//       whileInView={{ y: 0, opacity: 1 }}
-//       transition={{ duration: 0.7, delay: 0.1 }}
-//       viewport={{ once: true }}
-//       className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-purple-400 to-pink-500 bg-clip-text text-transparent"
-//     >
-//       About Me
-//     </motion.h2>
-//     <motion.p
-//       initial={{ y: 40, opacity: 0 }}
-//       whileInView={{ y: 0, opacity: 1 }}
-//       transition={{ duration: 0.7, delay: 0.3 }}
-//       viewport={{ once: true }}
-//       className="text-lg md:text-xl max-w-2xl text-gray-200"
-//     >
-//       I am a passionate developer who loves building beautiful, performant web apps. I specialize in React, Tailwind CSS, and modern web technologies. I enjoy learning new things and pushing the boundaries of what’s possible on the web.
-//     </motion.p>
-//   </section>
-// );
-
-// export default About; 
 
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -51,7 +12,7 @@ const About = () => {
   const tabs = [
     { id: "story", label: "My Story", icon: <Lightbulb className="w-5 h-5" /> },
     // { id: "journey", label: "Journey", icon: <Code className="w-5 h-5" /> },
-    // { id: "personal", label: "Personal", icon: <Heart className="w-5 h-5" /> }
+    { id: "personal", label: "Personal", icon: <Heart className="w-5 h-5" /> }
   ];
 
   const funFacts = [
@@ -272,7 +233,7 @@ const About = () => {
   };
 
   return (
-    <section id="about" className="py-24 bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 relative overflow-hidden">
+    <section id="about" className="py-24 relative w-screen">
       {/* Background elements */}
       <div className="absolute inset-0">
         <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-purple-500/30 rounded-full filter blur-3xl" />
@@ -332,7 +293,7 @@ const About = () => {
         </div>
 
         {/* Tab Navigation */}
-        <motion.div
+        {/* <motion.div
           initial={{ y: 20, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.4 }}
@@ -355,7 +316,7 @@ const About = () => {
               </button>
             ))}
           </div>
-        </motion.div>
+        </motion.div> */}
 
         {/* Tab Content */}
         <motion.div

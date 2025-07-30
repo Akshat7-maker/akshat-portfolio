@@ -1,63 +1,3 @@
-// import React, { useState } from "react";
-// import { motion } from "framer-motion";
-
-// const Contact = () => {
-//   const [submitted, setSubmitted] = useState(false);
-
-//   return (
-//     <section id="contact" className="py-24 flex flex-col items-center text-center">
-//       <motion.h2
-//         initial={{ y: 40, opacity: 0 }}
-//         whileInView={{ y: 0, opacity: 1 }}
-//         transition={{ duration: 0.7 }}
-//         viewport={{ once: true }}
-//         className="text-3xl md:text-4xl font-bold mb-8 bg-gradient-to-r from-purple-400 to-pink-500 bg-clip-text text-transparent"
-//       >
-//         Contact
-//       </motion.h2>
-//       <motion.form
-//         initial={{ scale: 0.9, opacity: 0 }}
-//         whileInView={{ scale: 1, opacity: 1 }}
-//         transition={{ duration: 0.7, delay: 0.2 }}
-//         viewport={{ once: true }}
-//         className="w-full max-w-md bg-gradient-to-br from-gray-800 via-gray-900 to-black rounded-2xl p-8 shadow-xl border border-gray-700 flex flex-col gap-6"
-//         onSubmit={e => {
-//           e.preventDefault();
-//           setSubmitted(true);
-//         }}
-//       >
-//         <input
-//           type="text"
-//           placeholder="Your Name"
-//           required
-//           className="px-4 py-3 rounded-lg bg-gray-900 text-white border border-gray-700 focus:outline-none focus:ring-2 focus:ring-pink-400"
-//         />
-//         <input
-//           type="email"
-//           placeholder="Your Email"
-//           required
-//           className="px-4 py-3 rounded-lg bg-gray-900 text-white border border-gray-700 focus:outline-none focus:ring-2 focus:ring-pink-400"
-//         />
-//         <textarea
-//           placeholder="Your Message"
-//           required
-//           rows={4}
-//           className="px-4 py-3 rounded-lg bg-gray-900 text-white border border-gray-700 focus:outline-none focus:ring-2 focus:ring-pink-400"
-//         />
-//         <motion.button
-//           whileHover={{ scale: 1.05, background: "linear-gradient(90deg,#ec4899,#8b5cf6)" }}
-//           whileTap={{ scale: 0.97 }}
-//           type="submit"
-//           className="px-8 py-3 bg-gradient-to-r from-pink-500 to-purple-600 text-white font-semibold rounded-full shadow-lg transition-all duration-300"
-//         >
-//           {submitted ? "Thank you!" : "Send Message"}
-//         </motion.button>
-//       </motion.form>
-//     </section>
-//   );
-// };
-
-// export default Contact; 
 
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -82,13 +22,13 @@ const Contact = () => {
       // link: "mailto:akshatchopra009@gmail.com",
       color: "text-blue-400"
     },
-    {
-      icon: <Phone className="w-6 h-6" />,
-      label: "Phone",
-      value: "+91 7888612152",
-      // link: "tel:+15551234567",
-      color: "text-green-400"
-    },
+    // {
+    //   icon: <Phone className="w-6 h-6" />,
+    //   label: "Phone",
+    //   value: "+91 7888612152",
+    //   // link: "tel:+15551234567",
+    //   color: "text-green-400"
+    // },
     {
       icon: <MapPin className="w-6 h-6" />,
       label: "Location",
@@ -108,7 +48,7 @@ const Contact = () => {
     {
       icon: <Linkedin className="w-6 h-6" />,
       label: "LinkedIn",
-      link: "https://www.linkedin.com/in/akshat-chopra-chopra-aa0706295",
+      link: "https://www.linkedin.com/in/akshat-chopra-aa0706295",
       color: "hover:text-blue-400"
     },
     {
@@ -154,7 +94,7 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="py-24 bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 relative overflow-hidden">
+    <section id="contact" className="py-24  relative w-screen">
       {/* Background elements */}
       <div className="absolute inset-0">
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-500/20 rounded-full filter blur-3xl" />
@@ -249,8 +189,7 @@ const Contact = () => {
                 <h4 className="text-lg font-semibold text-white">Quick Response</h4>
               </div>
               <p className="text-gray-300 text-sm">
-                I typically respond to messages within 24 hours. For urgent inquiries, 
-                feel free to call or connect via LinkedIn.
+                I typically respond to messages within 24 hours. For urgent inquiries connect via LinkedIn.
               </p>
             </div>
           </motion.div>

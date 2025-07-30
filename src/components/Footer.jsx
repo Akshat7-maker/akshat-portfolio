@@ -18,9 +18,9 @@ const Footer = () => (
     initial={{ opacity: 0 }}
     animate={{ opacity: 1 }}
     transition={{ duration: 1, delay: 0.2 }}
-    className="py-10 text-center text-gray-400 text-sm mt-16 border-t border-gray-800"
+    className="py-10 text-center text-gray-400 text-sm mt-16 border-t border-gray-800 w-screen"
   >
-    <div className="flex justify-center gap-6 mb-4">
+    {/* <div className="flex justify-center gap-6 mb-4">
       {socials.map((social) => (
         <a
           key={social.name}
@@ -32,9 +32,9 @@ const Footer = () => (
           {social.icon}
         </a>
       ))}
-    </div>
+    </div> */}
     <div>
-      &copy; {new Date().getFullYear()} MyPortfolio. All rights reserved.
+      &copy; {new Date().getFullYear()} Akshat Chopra. All rights reserved.
     </div>
   </motion.footer>
 );
